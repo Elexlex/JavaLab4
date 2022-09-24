@@ -5,9 +5,8 @@ public class Main {
     public static void main(String[] args){
         Scanner num = new Scanner(System.in);
         Bill bill = new Bill(10);
-        Main main= new Main();
         SubMain subMain = new SubMain();
-        int menu = 0;
+        int menu;
         String[] vegetables = {"Tomato", "Pumpkin", "Squash", "Cucumber", "Pepper", "Radish", "Salad", "Onion", "Carrot", "Potato"};
         double[] priceVegetable = new double[10];
         double[] discountVegetable = new double[10];
@@ -25,7 +24,7 @@ public class Main {
         }while (customerType!=2&&customerType!=1);
         do {
             if (customerType==1)
-                main.output(bill);
+                output(bill);
             else
                 subMain.output(bill);
             System.out.print("\n\n1. Add a new vegetable\n2. Delete a vegetable from the bill\n3. Print a bill and exit\n- ");
@@ -33,7 +32,7 @@ public class Main {
             switch (menu){
                 case 1:
                     if (customerType==1)
-                        main.input(bill, vegetables, priceVegetable, discountVegetable);
+                        input(bill, vegetables, priceVegetable, discountVegetable);
                     else
                         subMain.input(bill, vegetables, priceVegetable, discountVegetable);
                     break;
@@ -43,7 +42,7 @@ public class Main {
                 case 3:
                     if (bill.getItemNumber()!=0) {
                         if (customerType == 1)
-                            main.output(bill);
+                            output(bill);
                         else
                             subMain.output(bill);
                         bill.priceSummary();
@@ -61,8 +60,6 @@ public class Main {
 
     public static void input(Bill bill, String[] vegetables, double[] priceVegetable, double[] discountVegetable){
         Scanner num = new Scanner(System.in);
-        int number;
-        double kilo;
             System.out.println("\n- Vegetables:");
             for (int i = 0; i < 10; i++) {
                 System.out.print("\t" + (i + 1) + " - " + vegetables[i]);
@@ -81,11 +78,11 @@ public class Main {
         do {
             System.out.print("\nHow much would you like to buy (in kilo): ");
             kilo = num.nextDouble();
+        } while (kilo<=0);
             double truePrice = priceVegetable[number-1] * kilo;
             double trueDiscount = truePrice * (discountVegetable[number-1]/10);
             bill.addItem(new Item(vegetables[number-1], truePrice, kilo, trueDiscount));
             return bill;
-        } while (kilo<=0);
     }
     public static void output(Bill bill) {
         System.out.println("\n-----------------------------------------------------------");
@@ -100,8 +97,6 @@ public class Main {
     public static class SubMain extends Main{
         public static void input(Bill bill, String[] vegetables, double[] priceVegetable, double[] discountVegetable){
                 Scanner num = new Scanner(System.in);
-                int number;
-                double kilo;
                 System.out.println("\n- Vegetables:");
                 for (int i = 0; i < 10; i++) {
                     System.out.print("\t" + (i + 1) + " - " + vegetables[i]);
