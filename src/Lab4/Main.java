@@ -1,7 +1,11 @@
 package Lab4;
 import java.util.Scanner;
 public class Main {
+
+    //field
     private static int customerType;
+
+    //main method that contains filled arrays and a menu for adding and deleting items and printing a bill
     public static void main(String[] args){
         Scanner num = new Scanner(System.in);
         Bill bill = new Bill(10);
@@ -56,8 +60,10 @@ public class Main {
         System.out.println("- Have a nice day!");
     }
 
+    //getter
     public int getCustomerType() { return customerType; }
 
+    //input method for a normal customer
     public static void input(Bill bill, String[] vegetables, double[] priceVegetable, double[] discountVegetable){
         Scanner num = new Scanner(System.in);
             System.out.println("\n- Vegetables:");
@@ -67,6 +73,8 @@ public class Main {
             }
             inputPart2(bill, vegetables, priceVegetable, discountVegetable);
     }
+
+    //method that continues first input method
     private static Bill inputPart2 (Bill bill, String[] vegetables, double[] priceVegetable, double[] discountVegetable){
         Scanner num = new Scanner(System.in);
         double kilo;
@@ -84,6 +92,8 @@ public class Main {
             bill.addItem(new Item(vegetables[number-1], truePrice, kilo, trueDiscount));
             return bill;
     }
+
+    //output method for a normal costumer
     public static void output(Bill bill) {
         System.out.println("\n-----------------------------------------------------------");
         System.out.println("\n- Your bill: ");
@@ -94,7 +104,11 @@ public class Main {
             System.out.printf(" -  %.2f$\n", bill.getStack()[i].getPrice());
         }
     }
+
+    //a subclass that contains methods for a regular customer
     public static class SubMain extends Main{
+
+        //input method for a regular customer
         public static void input(Bill bill, String[] vegetables, double[] priceVegetable, double[] discountVegetable){
                 Scanner num = new Scanner(System.in);
                 System.out.println("\n- Vegetables:");
@@ -106,6 +120,7 @@ public class Main {
                 inputPart2(bill, vegetables, priceVegetable, discountVegetable);
         }
 
+        //output method for a regular customer
         public static void output(Bill bill) {
             System.out.println("\n-----------------------------------------------------------");
             System.out.println("\n- Your bill: ");

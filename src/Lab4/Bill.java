@@ -1,14 +1,18 @@
 package Lab4;
 import java.util.Scanner;
 public class Bill {
+
+    //fields
     private Item[] stack;
     private int itemNumber;
 
+    //constructor
     public Bill(int maxItemNumber) {
         stack = new Item[maxItemNumber];
         itemNumber = 0;
     }
 
+    //getters
     public Item[] getStack() {
         return stack;
     }
@@ -17,6 +21,7 @@ public class Bill {
         return itemNumber;
     }
 
+    //adds an element to the end of stack
     public void addItem(Item item) {
         if (checkStackFull())
             return;
@@ -28,6 +33,7 @@ public class Bill {
         itemNumber++;
     }
 
+    //deletes the selected element from the stack
     public void deleteItem() {
         if (checkStackEmpty())
             return;
@@ -47,6 +53,7 @@ public class Bill {
         itemNumber--;
     }
 
+    //chooses what amount to use depending on the type of customer
     public void priceSummary() {
         Main main = new Main();
         Sale sale = new Sale();
@@ -56,6 +63,7 @@ public class Bill {
             sale.saleSummary();
     }
 
+    //the amount for a normal customer
     private void summary() {
         double sum = 0;
         for (int i = 0; i < itemNumber; i++)
@@ -65,6 +73,7 @@ public class Bill {
         System.out.print("\n-----------------------------------------");
     }
 
+    //checking if the stack is full
     private boolean checkStackFull() {
         boolean check = itemNumber == stack.length;
         if (check)
@@ -72,6 +81,7 @@ public class Bill {
         return check;
     }
 
+    //checking if the stack is empty
     private boolean checkStackEmpty() {
         boolean check = itemNumber == 0;
         if (check)
@@ -79,10 +89,15 @@ public class Bill {
         return check;
     }
 
+    //a subclass that contains calculation of the amount for a regular customer
     public class Sale extends Bill {
+
+        //constructor
         public Sale() {
             super(itemNumber);
         }
+
+        //the amount for a regular customer
         private void saleSummary() {
             double sum = 0;
             double saleSum = 0;
