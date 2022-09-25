@@ -65,7 +65,6 @@ public class Main {
 
     //input method for a normal customer
     public static void input(Bill bill, String[] vegetables, double[] priceVegetable, double[] discountVegetable){
-        Scanner num = new Scanner(System.in);
             System.out.println("\n- Vegetables:");
             for (int i = 0; i < 10; i++) {
                 System.out.print("\t" + (i + 1) + " - " + vegetables[i]);
@@ -110,7 +109,6 @@ public class Main {
 
         //input method for a regular customer
         public static void input(Bill bill, String[] vegetables, double[] priceVegetable, double[] discountVegetable){
-                Scanner num = new Scanner(System.in);
                 System.out.println("\n- Vegetables:");
                 for (int i = 0; i < 10; i++) {
                     System.out.print("\t" + (i + 1) + " - " + vegetables[i]);
